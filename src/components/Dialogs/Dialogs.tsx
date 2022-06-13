@@ -1,44 +1,24 @@
 import React from 'react';
 import s from './Dialogs.module.css';
-import {NavLink} from 'react-router-dom';
+import DialogsItem from './DialogsItem/DialogsItem';
+import Message from './Message/Message'
+import {DialogsPageType, RootStateType} from '../../App';
 
-type DialogsItemPropsType = {
-    name: string
-    id: string
+type DialogsPropsType = {
+    state:DialogsPageType
 }
 
-const DialogsItem: React.FC<DialogsItemPropsType> = (props) => {
-    let path = '/dialogs/' + props.id;
-    return (
-        <div className={s.dialog + ' ' + s.active}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
+const Dialogs: React.FC<DialogsPropsType> = (props) => {
+    let dialogsElements = props.state.dialogs.map(d => <DialogsItem name={d.name} id={d.id}/>)
+    let messagesElements = props.state.messages.map(m => <Message message={m.message} id={m.id}/>)
 
-type MessagePropsType = {
-    message: string
-}
-
-const Message: React.FC<MessagePropsType> = (props) => {
-    return <div className={s.message}>{props.message}</div>
-}
-
-const Dialogs = () => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogsItem name="Dimych" id="1"/>
-                <DialogsItem name="Andrey" id="2"/>
-                <DialogsItem name="Sveta" id="3"/>
-                <DialogsItem name="Sasha" id="4"/>
-                <DialogsItem name="Victor" id="5"/>
-                <DialogsItem name="Batman" id="6"/>
+                {dialogsElements}
             </div>
             <div className={s.messages}>
-                <Message message='Hi'/>
-                <Message message='How are you?'/>
-                <Message message='Hello'/>
+                {messagesElements}
             </div>
         </div>
     )
