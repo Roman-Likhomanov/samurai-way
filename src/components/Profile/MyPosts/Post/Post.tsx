@@ -1,8 +1,12 @@
 import React from 'react';
 import s from './Post.module.css';
-import {PostsType} from '../../../../App';
 
-const Post = (props:PostsType) => {
+type PostPropsType = {
+    message:string
+    likesCount:number
+}
+
+const Post = (props:PostPropsType) => {
     return <div>
         <div className={s.item}>
             <img src="https://www.nicepng.com/png/full/66-661696_superman-icon.png"/>

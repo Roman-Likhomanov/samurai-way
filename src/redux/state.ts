@@ -1,3 +1,6 @@
+import {PostsType} from '../App';
+import {rerenderEntireThree} from '../render';
+
 let state = {
     profilePage: {
         posts: [
@@ -22,6 +25,16 @@ let state = {
            {id: 5,message:'two'},
        ],
    }
+}
+
+export let addPost = (postMessage:string) => {
+    let newPost: PostsType = {
+        id:5,
+        message:postMessage,
+        likesCount:0
+    }
+    state.profilePage.posts.push(newPost)
+    rerenderEntireThree(state)
 }
 
 export default state;
