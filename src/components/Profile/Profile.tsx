@@ -5,15 +5,20 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {ProfilePageType} from '../../App';
 
 export type ProfilePropsType = {
-    state:ProfilePageType
-    addPost:(postMessage:string)=>void
+    profilePage:ProfilePageType
+    addPost:()=>void
+    updateNewPostText:(newText:string)=>void
 }
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
-   debugger
+
     return <div>
         <ProfileInfo/>
-        <MyPosts posts={props.state.posts} addPost={props.addPost}/>
+        <MyPosts posts={props.profilePage.posts}
+                 addPost={props.addPost}
+                 newPostText={props.profilePage.newPostText}
+                 updateNewPostText={props.updateNewPostText}
+        />
     </div>
 }
 

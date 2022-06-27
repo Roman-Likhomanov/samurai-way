@@ -6,7 +6,9 @@ import {ProfilePropsType} from '../Profile';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    addPost:(postMessage:string)=>void
+    newPostText: string
+    addPost:()=>void
+    updateNewPostText:(newText:string)=>void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -16,9 +18,13 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
     let addPost = () => {
+            props.addPost()
+    }
+
+    let onPostChange = () => {
         if(newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value=''
+            props.updateNewPostText(newPostElement.current.value)
+
         }
     }
 
@@ -26,7 +32,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         <h3>My posts</h3>
         <div>
             <div>
-                <textarea ref={newPostElement}></textarea>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
             </div>
             <div>
                 <button onClick={addPost}>Add post</button>

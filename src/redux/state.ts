@@ -1,12 +1,16 @@
 import {PostsType} from '../App';
-import {rerenderEntireThree} from '../render';
+
+let rerenderEntireThree = () => {
+    console.log('state change')
+}
 
 let state = {
     profilePage: {
         posts: [
             {id: 1,message:'Hi, how are you?', likesCount:0},
             {id: 2,message:"It's my first post", likesCount:10},
-        ]
+        ],
+        newPostText: "It"
     },
    dialogsPage: {
        dialogs: [
@@ -27,14 +31,24 @@ let state = {
    }
 }
 
-export let addPost = (postMessage:string) => {
+export const addPost = () => {
     let newPost: PostsType = {
         id:5,
-        message:postMessage,
+        message:state.profilePage.newPostText,
         likesCount:0
     }
     state.profilePage.posts.push(newPost)
-    rerenderEntireThree(state)
+    state.profilePage.newPostText = ''
+    rerenderEntireThree()
+}
+
+export const updateNewPostText = (newText:string) => {
+    state.profilePage.newPostText = newText
+    rerenderEntireThree()
+}
+
+export const subscribe = (observer:()=>void) => {
+    rerenderEntireThree = observer
 }
 
 export default state;
