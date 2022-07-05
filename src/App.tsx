@@ -8,42 +8,12 @@ import {Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {subscribe, updateNewPostText} from './redux/state';
+import {ActionTypes, RootStateType, StoreType} from './redux/store';
 
 type AppPropsType = {
+    store: StoreType
     state: RootStateType
-    addPost:()=>void
-    updateNewPostText:(newText:string)=>void
-}
-
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-}
-
-export type DialogsPageType = {
-    messages: Array <MessageType>
-    dialogs:Array<DialogsItemType>
-}
-
-export type MessageType = {
-    message: string
-    id: number
-}
-export type DialogsItemType = {
-    name: string
-    id: number
-}
-
-export type ProfilePageType = {
-    posts: Array<PostsType>
-    newPostText: string
-}
-
-export type PostsType = {
-    id: number
-    message: string
-    likesCount: number
+    dispatch: (action: ActionTypes) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -52,10 +22,9 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                    <Route path="/dialogs" render={() => <Dialogs store={props.store}/>}/>
                     <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
-                                                                  addPost={props.addPost}
-                                                                  updateNewPostText={props.updateNewPostText}
+                                                                  dispatch={props.dispatch}
                     />}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
