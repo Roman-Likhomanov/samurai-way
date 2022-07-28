@@ -40,9 +40,12 @@ export type UsersPageType = {
 
 export type UsersType = {
     id: number
-    photoUrl: string
+    photos: {
+        small: string | undefined
+        large: string | undefined
+    }
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: {
         city: string
