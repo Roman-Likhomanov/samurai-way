@@ -1,4 +1,6 @@
-import {ActionTypes, DialogsPageType, PostsType} from './store';
+import {DialogsPageType} from './store';
+
+export type ActionDialogsTypes = ReturnType<typeof sendMessageCreator>|ReturnType<typeof updateNewMessageBodyCreator>
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
@@ -23,7 +25,7 @@ let initialState = {
         }
 
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionTypes) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionDialogsTypes) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             return {

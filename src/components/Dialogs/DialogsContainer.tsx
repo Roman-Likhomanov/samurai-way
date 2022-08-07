@@ -1,6 +1,6 @@
 import React from 'react';
-import {ActionTypes, RootStateType} from '../../redux/store';
-import {sendMessageCreator, updateNewMessageBodyCreator} from '../../redux/dialogs-reducer';
+import {RootStateType} from '../../redux/store';
+import {ActionDialogsTypes, sendMessageCreator, updateNewMessageBodyCreator} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 
@@ -11,7 +11,7 @@ let mapStateToProps = (state: RootStateType) => {
     }
 }
 
-let mapDispatchToProps = (dispatch:(action: ActionTypes) => void) => {
+let mapDispatchToProps = (dispatch:(action: ActionDialogsTypes) => void) => {
     return {
         updateNewMessageBody: (body:string)=>{
             dispatch(updateNewMessageBodyCreator(body))

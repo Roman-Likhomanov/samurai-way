@@ -1,6 +1,10 @@
-import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from './profile-reducer';
-import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from './dialogs-reducer';
-import {followAC, setUsersAC, unfollowAC} from './users-reducer';
+import profileReducer, {
+    ActionProfileTypes,
+    addPostActionCreator,
+    updateNewPostTextActionCreator
+} from './profile-reducer';
+import dialogsReducer, {ActionDialogsTypes, sendMessageCreator, updateNewMessageBodyCreator} from './dialogs-reducer';
+import {ActionUsersTypes} from './users-reducer';
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -26,6 +30,7 @@ export type DialogsItemType = {
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: null|ProfileType
 }
 
 export type PostsType = {
@@ -34,8 +39,34 @@ export type PostsType = {
     likesCount: number
 }
 
+export type ProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: string|null
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: string|null
+        github: string
+        mainLink: string|null
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string|undefined
+        large: string|undefined
+    }
+}
+
 export type UsersPageType = {
     users: Array<UsersType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
 }
 
 export type UsersType = {
@@ -58,12 +89,9 @@ export type StoreType = {
     getState: () => RootStateType
     // _callSubscriber:() => void
     subscribe: (observer: () => void) => void
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: ActionDialogsTypes | ActionProfileTypes | ActionUsersTypes) => void
 }
 
-export type ActionTypes = ReturnType<typeof addPostActionCreator>|ReturnType<typeof updateNewPostTextActionCreator>|
-    ReturnType<typeof sendMessageCreator>|ReturnType<typeof updateNewMessageBodyCreator> | ReturnType<typeof followAC>|
-    ReturnType<typeof unfollowAC>|ReturnType<typeof setUsersAC>
 
 // let store: StoreType = {
 //     // _state: {
