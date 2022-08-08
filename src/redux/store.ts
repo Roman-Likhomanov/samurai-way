@@ -1,15 +1,21 @@
-import profileReducer, {
-    ActionProfileTypes,
-    addPostActionCreator,
-    updateNewPostTextActionCreator
-} from './profile-reducer';
-import dialogsReducer, {ActionDialogsTypes, sendMessageCreator, updateNewMessageBodyCreator} from './dialogs-reducer';
+import {ActionProfileTypes} from './profile-reducer';
+import {ActionDialogsTypes} from './dialogs-reducer';
 import {ActionUsersTypes} from './users-reducer';
+
+
+export type StoreType = {
+    // _state: RootStateType
+    getState: () => RootStateType
+    // _callSubscriber:() => void
+    subscribe: (observer: () => void) => void
+    dispatch: (action: ActionDialogsTypes | ActionProfileTypes | ActionUsersTypes) => void
+}
 
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     usersPage: UsersPageType
+    auth: AuthDataType
 }
 
 export type DialogsPageType = {
@@ -67,6 +73,7 @@ export type UsersPageType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 
 export type UsersType = {
@@ -84,12 +91,11 @@ export type UsersType = {
     }
 }
 
-export type StoreType = {
-    // _state: RootStateType
-    getState: () => RootStateType
-    // _callSubscriber:() => void
-    subscribe: (observer: () => void) => void
-    dispatch: (action: ActionDialogsTypes | ActionProfileTypes | ActionUsersTypes) => void
+export type AuthDataType = {
+    userId: number|null
+    email: string|null
+    login: string|null
+    isAuth: boolean
 }
 
 
