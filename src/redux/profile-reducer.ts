@@ -1,6 +1,10 @@
 import {PostsType, ProfilePageType, ProfileType} from './store';
+import {usersAPI} from '../api/api';
 
-export type ActionProfileTypes = ReturnType<typeof addPostActionCreator>|ReturnType<typeof updateNewPostTextActionCreator>|
+export type ActionProfileTypes =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof updateNewPostTextActionCreator>
+    |
     ReturnType<typeof setUserProfile>
 
 const ADD_POST = 'ADD-POST'
@@ -49,6 +53,15 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionPro
 
 export const addPostActionCreator = () => ({type: ADD_POST}) as const
 export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text}) as const
-export const setUserProfile = (profile:any) => ({type: SET_USER_PROFILE, profile}) as const
+export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile}) as const
+
+export const getProfile = (userId: string) => {
+    return (dispatch: (action: ActionProfileTypes) => void) => {
+        usersAPI.getProfile(userId)
+            .then(data => {
+                dispatch(setUserProfile(data))
+            })
+    }
+}
 
 export default profileReducer

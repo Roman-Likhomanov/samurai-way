@@ -6,7 +6,6 @@ import {UsersType} from '../../redux/store';
 type HeaderPropsType = {
     isAuth: boolean
     login: string|null
-    setAuthUserData: (userId: number, email: string, login: string) => void
 }
 
 const Header: React.FC<HeaderPropsType> = (props) => {
