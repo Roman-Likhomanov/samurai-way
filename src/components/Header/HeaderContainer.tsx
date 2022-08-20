@@ -15,7 +15,7 @@ type MapDispatchPropsType = {
 
 type HeaderContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
-class HeaderContainer extends React.Component<HeaderContainerPropsType, RootStateType> {
+class HeaderContainer extends React.Component<HeaderContainerPropsType, {}> {
 
     componentDidMount() {
         this.props.getAuth()
