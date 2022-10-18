@@ -21,7 +21,6 @@ export type RootStateType = {
 export type DialogsPageType = {
     messages: Array <MessageType>
     dialogs:Array<DialogsItemType>
-    newMessageBody: string
 }
 
 export type MessageType = {
@@ -35,7 +34,6 @@ export type DialogsItemType = {
 
 export type ProfilePageType = {
     posts: Array<PostsType>
-    newPostText: string
     profile: null|ProfileType
     status: string
 }

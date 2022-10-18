@@ -1,9 +1,8 @@
 import React from 'react';
 import {RootStateType} from '../../redux/store';
-import {ActionDialogsTypes, sendMessageCreator, updateNewMessageBodyCreator} from '../../redux/dialogs-reducer';
+import {ActionDialogsTypes, sendMessageCreator} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
 
@@ -16,11 +15,8 @@ let mapStateToProps = (state: RootStateType) => {
 
 let mapDispatchToProps = (dispatch:(action: ActionDialogsTypes) => void) => {
     return {
-        updateNewMessageBody: (body:string)=>{
-            dispatch(updateNewMessageBodyCreator(body))
-        },
-        sendMessage: ()=>{
-            dispatch(sendMessageCreator())
+        sendMessage: (newMessageBody: string)=>{
+            dispatch(sendMessageCreator(newMessageBody))
         }
     }
 }

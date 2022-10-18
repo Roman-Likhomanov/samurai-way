@@ -22,7 +22,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
             {/*        src="https://avatars.mds.yandex.net/get-kinopoisk-post-img/1345014/10fbf771bd75965d188bb879acdb2144/960x540"/>*/}
             {/*</div>*/}
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
+                <img src={props.profile.photos.small}/>
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
