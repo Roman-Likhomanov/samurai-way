@@ -1,9 +1,7 @@
 import {UsersPageType, UsersType} from './store';
 import {usersAPI} from '../api/api';
-import {ActionDialogsTypes} from './dialogs-reducer';
-import {ActionProfileTypes} from './profile-reducer';
 
-export type ActionUsersTypes =
+export type UsersActionType =
     ReturnType<typeof followSuccess>
     |
     ReturnType<typeof unfollowSuccess>
@@ -31,7 +29,7 @@ let initialState = {
     followingInProgress: []
 }
 
-const usersReducer = (state: UsersPageType = initialState, action: ActionUsersTypes) => {
+const usersReducer = (state: UsersPageType = initialState, action: UsersActionType) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -81,7 +79,7 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
 }) as const
 
 export const getUsers = (currentPage: number, pageSize: number) => {
-    return (dispatch: (action: ActionUsersTypes) => void) => {
+    return (dispatch: (action: UsersActionType) => void) => {
         dispatch(toggleIsFetching(true))
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false))
@@ -92,7 +90,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
 }
 
 export const follow = (userId: number) => {
-    return (dispatch: (action: ActionUsersTypes) => void) => {
+    return (dispatch: (action: UsersActionType) => void) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.getFollow(userId)
             .then(data => {
@@ -105,7 +103,7 @@ export const follow = (userId: number) => {
 }
 
 export const unfollow = (userId: number) => {
-    return (dispatch: (action: ActionUsersTypes) => void) => {
+    return (dispatch: (action: UsersActionType) => void) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.getUnfollow(userId)
             .then(data => {
