@@ -77,6 +77,5 @@ export default compose<React.ComponentType>(
         setCurrentPage,
         toggleFollowingProgress,
         getUsers
-    }),
-    WithAuthRedirect
+    })
 )(UsersContainer)

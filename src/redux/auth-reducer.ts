@@ -30,7 +30,7 @@ export const setAuthUserData = (userId: number|null, email: string|null, login: 
 
 export const getAuth = (): AppThunkType => {
     return (dispatch) => {
-        authAPI.me()
+        return authAPI.me()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data

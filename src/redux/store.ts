@@ -1,6 +1,7 @@
 import {ProfileActionType} from './profile-reducer';
 import {DialogsActionType} from './dialogs-reducer';
 import {UsersActionType} from './users-reducer';
+import {AuthActionType} from './auth-reducer';
 
 
 export type StoreType = {
@@ -8,7 +9,7 @@ export type StoreType = {
     getState: () => RootStateType
     // _callSubscriber:() => void
     subscribe: (observer: () => void) => void
-    dispatch: (action: DialogsActionType | ProfileActionType | UsersActionType) => void
+    dispatch: (action: DialogsActionType | ProfileActionType | UsersActionType|AuthActionType) => void
 }
 
 export type RootStateType = {
@@ -16,6 +17,7 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
     usersPage: UsersPageType
     auth: AuthDataType
+    app: AppDataType
 }
 
 export type DialogsPageType = {
@@ -95,6 +97,10 @@ export type AuthDataType = {
     email: string|null
     login: string|null
     isAuth: boolean
+}
+
+export type AppDataType = {
+    initialized: boolean
 }
 
 

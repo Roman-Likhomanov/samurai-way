@@ -1,5 +1,4 @@
 import {Redirect} from 'react-router-dom';
-import Dialogs from '../components/Dialogs/Dialogs';
 import React, {ComponentType} from 'react';
 import {RootStateType} from '../redux/store';
 import {connect} from 'react-redux';
@@ -19,8 +18,6 @@ export function WithAuthRedirect<T>(Component: ComponentType<T>) {
         return <Component {...restProps as T}/>
     }
 
-    let ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
-
-    return ConnectedAuthRedirectComponent
+    return connect(mapStateToPropsForRedirect)(RedirectComponent)
 }
 
