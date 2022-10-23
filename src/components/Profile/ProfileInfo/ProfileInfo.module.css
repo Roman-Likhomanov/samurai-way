@@ -2,7 +2,21 @@
     padding: 10px
 }
 
-img {
-    width: 70%;
-    height: 70%;
+.mainPhoto {
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+}
+
+.profileAvatarBox {
+    position: relative;
+    /*margin-top: 30px;*/
+}
+
+.photoButton {
+
+    position: absolute;
+    right: 750px;
+    bottom: 0px;
+    cursor: pointer;
 }
