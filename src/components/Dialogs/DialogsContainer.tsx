@@ -1,5 +1,5 @@
 import React from 'react';
-import {RootStateType} from '../../redux/store';
+import {RootStateType} from '../../redux/types';
 import {DialogsActionType, sendMessageCreator} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';

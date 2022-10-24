@@ -1,5 +1,5 @@
 import React from 'react';
-import {RootStateType} from '../../redux/store';
+import {RootStateType} from '../../redux/types';
 import {connect} from 'react-redux';
 import Header from './Header';
 import {logout} from '../../redux/auth-reducer';

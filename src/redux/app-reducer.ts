@@ -1,4 +1,4 @@
-import {AppDataType} from './store';
+import {AppDataType} from './types';
 import {AppThunkType} from './redux-store';
 import {getAuth} from './auth-reducer';
 

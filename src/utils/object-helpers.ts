@@ -1,4 +1,4 @@
-import {UsersType} from '../redux/store';
+import {UsersType} from '../redux/types';
 
 export const updateObjectInArray = (items: Array<UsersType>, itemId: number, objPropName: string,
                                     newObjProps: {followed:boolean}) => {

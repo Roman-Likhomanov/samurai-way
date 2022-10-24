@@ -1,5 +1,7 @@
-import {PostsType, ProfilePageType, ProfileType} from './store';
+import {PostsType, ProfilePageType, ProfileType} from './types';
 import {profileAPI, usersAPI} from '../api/api';
+import {AppThunkType} from './redux-store';
+import { stopSubmit } from 'redux-form';
 
 export type ProfileActionType =
     ReturnType<typeof addPostActionCreator>
@@ -89,6 +91,17 @@ export const savePhoto = (file: any) => async (dispatch: (action: ProfileActionT
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+
+export const saveProfile = (profile: ProfileType): AppThunkType => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    const response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getProfile(String(userId)));
+    } else {
+        dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }));
+        return Promise.reject(response.data.messages[0]);
     }
 }
 

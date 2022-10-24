@@ -1,4 +1,4 @@
-import {DialogsPageType} from './store';
+import {DialogsPageType} from './types';
 
 export type DialogsActionType = ReturnType<typeof sendMessageCreator>
 

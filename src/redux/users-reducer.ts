@@ -1,4 +1,4 @@
-import {UsersPageType, UsersType} from './store';
+import {UsersPageType, UsersType} from './types';
 import {usersAPI} from '../api/api';
 import {updateObjectInArray} from '../utils/object-helpers';
 

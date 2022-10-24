@@ -10,7 +10,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import {connect, Provider} from 'react-redux';
 import {initializeApp} from './redux/app-reducer';
-import {RootStateType} from './redux/store';
+import {RootStateType} from './redux/types';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/redux-store';
 import {WithSuspense} from './hoc/WithSuspense';
