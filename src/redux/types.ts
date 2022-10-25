@@ -97,6 +97,7 @@ export type AuthDataType = {
     email: string|null
     login: string|null
     isAuth: boolean
+    captchaUrl: string|null
 }
 
 export type AppDataType = {
