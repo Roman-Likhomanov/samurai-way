@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {HashRouter, Route} from 'react-router-dom';
+import {HashRouter, Redirect, Route, Switch} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -48,15 +48,20 @@ class App extends React.Component<OwnPropsType, {}> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path="/dialogs"
-                           render={() => <SuspendedDialogs/>}/>
-                    <Route path="/profile/:userId?"
-                           render={() => <SuspendedProfile/>}/>
-                    <Route path="/users" render={() => <UsersContainer/>}/>
-                    <Route path="/news" render={() => <News/>}/>
-                    <Route path="/music" render={() => <Music/>}/>
-                    <Route path="/settings" render={() => <Settings/>}/>
-                    <Route path="/login" render={() => <Login/>}/>
+                    <Switch>
+                        <Route exact path="/"
+                               render={() => <Redirect to={"/profile"}/>}/>
+                        <Route path="/dialogs"
+                               render={() => <SuspendedDialogs/>}/>
+                        <Route path="/profile/:userId?"
+                               render={() => <SuspendedProfile/>}/>
+                        <Route path="/users" render={() => <UsersContainer/>}/>
+                        <Route path="/news" render={() => <News/>}/>
+                        <Route path="/music" render={() => <Music/>}/>
+                        <Route path="/settings" render={() => <Settings/>}/>
+                        <Route path="/login" render={() => <Login/>}/>
+                        <Route path="*" render={() => <div>404 Not found</div>}/>
+                    </Switch>
                 </div>
             </div>
         );

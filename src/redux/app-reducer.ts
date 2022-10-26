@@ -4,7 +4,7 @@ import {getAuth} from './auth-reducer';
 
 export type AppActionType = ReturnType<typeof initializedSuccess>
 
-const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS'
+const INITIALIZED_SUCCESS = 'APP/INITIALIZED-SUCCESS'
 
 let initialState = {
     initialized: false

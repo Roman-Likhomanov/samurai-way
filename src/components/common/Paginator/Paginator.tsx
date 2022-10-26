@@ -47,22 +47,3 @@ let Paginator: React.FC<UserPropsType> = ({totalItemsCount, pageSize, currentPag
 export default Paginator;
 
 
-// const Paginator: React.FC<UserPropsType> = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
-//
-//     let pagesCount = Math.ceil(totalUsersCount / pageSize)
-//
-//     let pages = []
-//     for (let i = 1; i <= pagesCount; i++) {
-//         pages.push(i)
-//     }
-//     return <div>
-//             {
-//                 pages.map((p, index) => {
-//                     return <span key={index} className={currentPage === p ? styles.selectedPage : undefined}
-//                                  onClick={(e) => onPageChanged(p)}>{p}</span>
-//                 })
-//             }
-//         </div>
-// }
-//
-// export default Paginator;

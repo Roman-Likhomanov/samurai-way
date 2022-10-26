@@ -10,11 +10,11 @@ export type ProfileActionType =
     | ReturnType<typeof deletePost>
     | ReturnType<typeof savePhotoSuccess>
 
-const ADD_POST = 'ADD-POST'
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
-const SET_STATUS = 'SET-STATUS'
-const DELETE_POST = 'DELETE-POST'
-const SAVE_PHOTO_SUCCESS = 'SAVE-PHOTO-SUCCESS'
+const ADD_POST = 'PROFILE/ADD-POST'
+const SET_USER_PROFILE = 'PROFILE/SET-USER-PROFILE'
+const SET_STATUS = 'PROFILE/SET-STATUS'
+const DELETE_POST = 'PROFILE/DELETE-POST'
+const SAVE_PHOTO_SUCCESS = 'PROFILE/SAVE-PHOTO-SUCCESS'
 
 let initialState = {
     posts: [
@@ -71,37 +71,72 @@ export const deletePost = (postId: number) => ({type: DELETE_POST, postId}) as c
 export const savePhotoSuccess = (photos: any) => ({type: SAVE_PHOTO_SUCCESS, photos}) as const
 
 export const getProfile = (userId: string) => async (dispatch: (action: ProfileActionType) => void) => {
-    let response = await usersAPI.getProfile(userId)
-    dispatch(setUserProfile(response))
+    try {
+        let response = await usersAPI.getProfile(userId)
+        dispatch(setUserProfile(response))
+    }
+    catch(e: any) {
+        const error = e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console')
+    }
 }
 
 export const getStatus = (userId: string) => async (dispatch: (action: ProfileActionType) => void) => {
-    let response = await profileAPI.getStatus(userId)
-    dispatch(setStatus(response))
+    try {
+        let response = await profileAPI.getStatus(userId)
+        dispatch(setStatus(response))
+    }
+    catch(e: any) {
+        const error = e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console')
+    }
 }
 
 export const updateStatus = (status: string) => async (dispatch: (action: ProfileActionType) => void) => {
-    let response = await profileAPI.updateStatus(status)
-    if (response.resultCode === 0) {
-        dispatch(setStatus(status))
+    try {
+        let response = await profileAPI.updateStatus(status)
+        if (response.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+    }
+    catch(e: any) {
+        const error = e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console')
     }
 }
 
 export const savePhoto = (file: any) => async (dispatch: (action: ProfileActionType) => void) => {
-    let response = await profileAPI.savePhoto(file)
-    if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos))
+    try {
+        let response = await profileAPI.savePhoto(file)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccess(response.data.data.photos))
+        }
+    }
+    catch(e: any) {
+        const error = e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console')
     }
 }
 
 export const saveProfile = (profile: ProfileType): AppThunkType => async (dispatch, getState) => {
-    const userId = getState().auth.userId;
-    const response = await profileAPI.saveProfile(profile)
-    if (response.data.resultCode === 0) {
-        dispatch(getProfile(String(userId)));
-    } else {
-        dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }));
-        return Promise.reject(response.data.messages[0]);
+    try {
+        const userId = getState().auth.userId;
+        const response = await profileAPI.saveProfile(profile)
+        if (response.data.resultCode === 0) {
+            dispatch(getProfile(String(userId)));
+        } else {
+            dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0]}));
+            return Promise.reject(response.data.messages[0]);
+        }
+    }
+    catch(e: any) {
+        const error = e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console')
     }
 }
 

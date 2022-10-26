@@ -2,7 +2,7 @@ import {DialogsPageType} from './types';
 
 export type DialogsActionType = ReturnType<typeof sendMessageCreator>
 
-const SEND_MESSAGE = 'SEND-MESSAGE'
+const SEND_MESSAGE = 'DIALOGS/SEND-MESSAGE'
 
 let initialState = {
             dialogs: [
