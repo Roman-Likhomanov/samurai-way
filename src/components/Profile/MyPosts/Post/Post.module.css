@@ -4,10 +4,35 @@
 }
 
 .item {
-    color: darkblue;
+    display:flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 30px 0 30px 0;
+    padding: 15px 50px;
 }
 
 .item img {
     width:50px;
     height:50px;
+    border-radius: 50%;
+}
+
+.name {
+    display: flex;
+    gap: 15px;
+    font-weight: 700;
+}
+
+.message {
+    margin: 15px 0 15px 10px;
+    font-family: Georgia,sans-serif;
+    font-size: 1em;
+}
+
+.likes {
+    align-self: flex-end;
+    cursor: pointer;
+    font-family: Georgia,sans-serif;
+    font-weight: 700;
 }

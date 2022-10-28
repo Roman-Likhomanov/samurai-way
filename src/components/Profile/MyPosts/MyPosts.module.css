@@ -1,7 +1,54 @@
 .postsBlock {
-    padding: 10px;
+
+}
+
+.addPost {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 30px 0 30px 0;
+    width: 100%;
+}
+
+.addPost h3 {
+    padding: 20px 0 20px 50px;
 }
 
 .posts {
     margin-top: 10px;
 }
+
+.addPostForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.addPostForm button {
+    background-color: #E0E0E0;
+    border: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -webkit-appearance: none;
+    color: #828282;
+    cursor: pointer;
+    float: none;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.addPostForm button:hover {
+    background-color: #0CB4F1;
+    color: white;
+}
+
+.postsBlock textarea {
+    resize: none;
+    border-radius: 10px;
+    width: 700px;
+    height: 30px;
+}
+

@@ -41,7 +41,8 @@ export type ProfilePageType = {
 }
 
 export type PostsType = {
-    id: number
+    id: string|number
+    name: string
     message: string
     likesCount: number
 }
@@ -95,7 +96,7 @@ export type UsersType = {
 export type AuthDataType = {
     userId: number|null
     email: string|null
-    login: string|null
+    login: string
     isAuth: boolean
     captchaUrl: string|null
 }

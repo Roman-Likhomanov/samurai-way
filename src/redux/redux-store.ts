@@ -6,6 +6,7 @@ import authReducer, {AuthActionType} from './auth-reducer';
 import thunkMiddleware, {ThunkAction} from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form';
 import appReducer, {AppActionType} from './app-reducer';
+import {TypedUseSelectorHook, useSelector} from 'react-redux';
 
 
 let reducers = combineReducers({
@@ -26,6 +27,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
 
 export type AppStateType = ReturnType<typeof reducers>
+
+export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector
 
 export type ActionsType =
     | AuthActionType

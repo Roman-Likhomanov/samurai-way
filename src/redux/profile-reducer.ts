@@ -2,6 +2,7 @@ import {PostsType, ProfilePageType, ProfileType} from './types';
 import {profileAPI, usersAPI} from '../api/api';
 import {AppThunkType} from './redux-store';
 import { stopSubmit } from 'redux-form';
+import {v1} from 'uuid';
 
 export type ProfileActionType =
     ReturnType<typeof addPostActionCreator>
@@ -18,8 +19,10 @@ const SAVE_PHOTO_SUCCESS = 'PROFILE/SAVE-PHOTO-SUCCESS'
 
 let initialState = {
     posts: [
-        {id: 1, message: 'Hi, how are you?', likesCount: 0},
-        {id: 2, message: 'It\'s my first post', likesCount: 10},
+        {id: v1(), name: 'Bob Smith', message: 'Hi, how are you? What are you doing?', likesCount: 5},
+        {id: v1(), name: 'John Johnson', message: 'It\'s my first post. I am very glad that such a cool social network has appeared!', likesCount: 15},
+        {id: v1(), name: 'Hanna Jackson', message: 'Hello! It\'s great that you are now in this social network! ' +
+                'We will now communicate more often :))', likesCount: 10},
     ],
     profile: null,
     status: ''
@@ -29,15 +32,12 @@ const profileReducer = (state: ProfilePageType = initialState, action: ProfileAc
     switch (action.type) {
         case ADD_POST: {
             let newPost: PostsType = {
-                id: 5,
+                id: v1(),
+                name: action.name,
                 message: action.newPostText,
                 likesCount: 0
             }
-            return {
-                ...state,
-                posts: [...state.posts, newPost],
-                newPostText: ''
-            }
+            return {...state, posts: [newPost, ...state.posts]}
         }
         case SET_USER_PROFILE: {
             return {
@@ -64,7 +64,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ProfileAc
     }
 }
 
-export const addPostActionCreator = (newPostText: string) => ({type: ADD_POST, newPostText}) as const
+export const addPostActionCreator = (newPostText: string, name: string) => ({type: ADD_POST, newPostText, name}) as const
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile}) as const
 export const setStatus = (status: string) => ({type: SET_STATUS, status}) as const
 export const deletePost = (postId: number) => ({type: DELETE_POST, postId}) as const

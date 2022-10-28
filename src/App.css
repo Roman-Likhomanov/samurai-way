@@ -1,6 +1,6 @@
 .app-wrapper {
     display: grid;
-    width: 1200px;
+    /*width: 1200px;*/
     margin: 0 auto;
     grid-template-areas:
             'h h'
@@ -11,7 +11,8 @@
 
 .app-wrapper-content {
     grid-area: c;
-    background-color: #f4f4f4;
+    background-color: #edeef0;
+    padding: 30px;
 }
 
 

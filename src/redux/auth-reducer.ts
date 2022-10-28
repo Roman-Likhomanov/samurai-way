@@ -11,7 +11,7 @@ const GET_CAPTCHA_URL_SUCCESS = 'AUTH/GET_CAPTCHA_URL_SUCCESS'
 let initialState = {
     userId: null,
     email: null,
-    login: null,
+    login: '',
     isAuth: false,
     captchaUrl: null
 }
@@ -29,7 +29,7 @@ const authReducer = (state: AuthDataType = initialState, action: AuthActionType)
     }
 }
 
-export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
+export const setAuthUserData = (userId: number | null, email: string | null, login: string, isAuth: boolean) => ({
     type: SET_USER_DATA,
     payload: {userId, email, login, isAuth}
 }) as const
@@ -89,7 +89,7 @@ export const logout = (): AppThunkType => async (dispatch) => {
     try {
         let response = await authAPI.logout()
         if (response.data.resultCode === 0) {
-            dispatch(setAuthUserData(null, null, null, false))
+            dispatch(setAuthUserData(null, null, '', false))
         }
     }
     catch(e: any) {

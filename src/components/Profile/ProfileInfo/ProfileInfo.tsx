@@ -6,6 +6,7 @@ import userPhoto from '../../../assets/images/user.png';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import photoicon from '../../../assets/images/photoicon.svg'
 import ProfileDataForm, {FormDataType} from './ProfileDataForm';
+import backgroundImg from '../../../assets/images/maldivy.jpg'
 
 type ProfileInfoType = {
     profile: ProfileType | null
@@ -29,6 +30,10 @@ type ContactType = {
 
 
 const ProfileInfo: React.FC<ProfileInfoType> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+
+    const background = {
+        backgroundImage: `url(${backgroundImg})`,
+    }
 
     let [editMode, setEditMode] = useState(false);
 
@@ -58,54 +63,62 @@ const ProfileInfo: React.FC<ProfileInfoType> = ({profile, status, updateStatus, 
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <div className={s.profileAvatarBox}>
-                    <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
-                    {isOwner && <div className={s.photoButton} onClick={selectFileHandler}>
-                        <img src={photoicon} alt="photoicon"/>
-                    </div>}
-                    <input style={{display: 'none'}}
-                           ref={inputRef}
-                           type="file"
-                           accept="image/*"
-                           onChange={uploadHandler}
-                    />
+                <div style={background} className={s.backgroundPhoto}></div>
+                <div className={s.descriptionContainer}>
+                    <div className={s.profileAvatarBox}>
+                        <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
+                        {isOwner && <div className={s.photoButton} onClick={selectFileHandler}>
+                            <img src={photoicon} alt="photoicon"/>
+                        </div>}
+                        <input style={{display: 'none'}}
+                               ref={inputRef}
+                               type="file"
+                               accept="image/*"
+                               onChange={uploadHandler}
+                        />
+                    </div>
+                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                    {editMode
+                        ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+                        : <ProfileData goToEditMode={() => {
+                            setEditMode(true)
+                        }} profile={profile} isOwner={isOwner}/>}
                 </div>
-                {editMode
-                    ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit} />
-                    : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={profile} isOwner={isOwner} />}
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     )
 }
 
-const ProfileData: React.FC<ProfileDataType> = ({ profile, isOwner, goToEditMode }) => {
-    return <div>
-        {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
-        <div>
-            <b>Full name</b>: {profile && profile.fullName}
-        </div>
-        <div>
-            <b>Looking for a job</b>: {profile && profile.lookingForAJob ? "yes" : "no"}
-        </div>
-        {profile && profile.lookingForAJob &&
+const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner, goToEditMode}) => {
+    return <div className={s.profileDataBox}>
             <div>
-                <b>My professional skills</b>: {profile && profile.lookingForAJobDescription}
+                {profile && profile.fullName}
             </div>
-        }
+            <div>
+                <b>Looking for a job</b>: {profile && profile.lookingForAJob ? 'yes' : 'no'}
+            </div>
+            {profile && profile.lookingForAJob &&
+                <div>
+                    <b>My professional skills</b>: {profile && profile.lookingForAJobDescription}
+                </div>
+            }
+            <div>
+                <b>About me</b>: {profile && profile.aboutMe}
+            </div>
         <div>
-            <b>About me</b>: {profile && profile.aboutMe}
-        </div>
-        <div>
-            <b>Contacts</b>: {profile && Object.keys(profile.contacts).map(key =>  {
+            <br></br>
+            <b>Contacts</b>: {profile && Object.keys(profile.contacts).map(key => {
             return <Contact key={key} contactTitle={key} contactValue={
-               profile.contacts[key as keyof typeof profile.contacts ]} />
-        })   }
+                profile.contacts[key as keyof typeof profile.contacts]}/>
+        })}
         </div>
+        {isOwner && <div>
+            <button onClick={goToEditMode}>Edit</button>
+        </div>}
     </div>
 }
 
-const Contact: React.FC<ContactType> = ({ contactTitle, contactValue }) => {
+const Contact: React.FC<ContactType> = ({contactTitle, contactValue}) => {
     return <div className={s.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }
 

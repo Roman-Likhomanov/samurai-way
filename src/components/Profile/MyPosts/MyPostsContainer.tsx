@@ -13,8 +13,8 @@ let mapStateToProps = (state: RootStateType) => {
 
 let mapDispatchToProps = (dispatch:(action: ProfileActionType) => void) => {
     return {
-        addPost: (newPostText:string)=>{
-            dispatch(addPostActionCreator(newPostText))
+        addPost: (newPostText:string, name: string)=>{
+            dispatch(addPostActionCreator(newPostText, name))
         }
     }
 }
