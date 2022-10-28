@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Post.module.css';
+import avatar from '../../../../assets/images/avatar.png'
 
 type PostPropsType = {
     name: string
@@ -11,7 +12,7 @@ const Post = (props: PostPropsType) => {
     return <div>
         <div className={s.item}>
             <div className={s.name}>
-                <img src="https://html5css.ru/howto/img_avatar.png"/>
+                <img src={avatar}/>
                 <p>{props.name}</p>
             </div>
             <div className={s.message}>

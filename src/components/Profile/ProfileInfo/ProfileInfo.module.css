@@ -1,5 +1,7 @@
 .descriptionBlock {
     position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 21.5px 0 rgb(0 0 0 / 10%);
 }
 
 .descriptionContainer {
@@ -16,7 +18,6 @@
     background-size: cover;
     background-position: center;
     border-radius: 10px 10px 0 0;
-    box-shadow: 0 0 21.5px 0 rgb(0 0 0 / 10%)
 }
 
 .mainPhoto {

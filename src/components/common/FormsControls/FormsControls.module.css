@@ -1,3 +1,9 @@
+.textarea {
+    border-radius: 10px;
+    padding: 10px;
+    resize: none;
+}
+
 .formControl.error input,
 .formControl.error textarea {
     border: solid 2px red

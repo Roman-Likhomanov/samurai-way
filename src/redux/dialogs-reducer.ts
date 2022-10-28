@@ -1,4 +1,7 @@
 import {DialogsPageType} from './types';
+import {v1} from 'uuid';
+import {AppThunkType} from './redux-store';
+import {reset} from 'redux-form';
 
 export type DialogsActionType = ReturnType<typeof sendMessageCreator>
 
@@ -6,19 +9,15 @@ const SEND_MESSAGE = 'DIALOGS/SEND-MESSAGE'
 
 let initialState = {
             dialogs: [
-                {id: 1, name: 'Dimych'},
-                {id: 2, name: 'Andrey'},
-                {id: 3, name: 'Sveta'},
-                {id: 4, name: 'Sasha'},
-                {id: 5, name: 'Victor'},
-                {id: 6, name: 'Batman'}
+                {id: v1(), name: 'John'},
+                {id: v1(), name: 'Hanna'},
+                {id: v1(), name: 'Bob'},
+
             ],
             messages: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'How are you?'},
-                {id: 3, message: 'Hello'},
-                {id: 4, message: 'One'},
-                {id: 5, message: 'two'},
+                {id: v1(), message: 'Hi'},
+                {id: v1(), message: 'How are you?'},
+                {id: v1(), message: 'Hello'}
             ]
         }
 
@@ -37,5 +36,10 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsAc
 }
 
 export const sendMessageCreator = (newMessageBody: string) => ({type: SEND_MESSAGE, newMessageBody}) as const
+
+export const sendMessageTC = (newMessageBody:string): AppThunkType => (dispatch) => {
+    dispatch(sendMessageCreator(newMessageBody))
+    dispatch(reset('dialogAddMessageForm'))
+}
 
 export default dialogsReducer

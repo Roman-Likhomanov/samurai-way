@@ -1,7 +1,7 @@
 import {PostsType, ProfilePageType, ProfileType} from './types';
 import {profileAPI, usersAPI} from '../api/api';
 import {AppThunkType} from './redux-store';
-import { stopSubmit } from 'redux-form';
+import {reset, stopSubmit} from 'redux-form';
 import {v1} from 'uuid';
 
 export type ProfileActionType =
@@ -138,6 +138,11 @@ export const saveProfile = (profile: ProfileType): AppThunkType => async (dispat
             ? e.response.data.error
             : (e.message + ', more details in the console')
     }
+}
+
+export const addPostTC = (newPostText: string, name: string): AppThunkType => (dispatch) => {
+    dispatch(addPostActionCreator(newPostText, name))
+    dispatch(reset('ProfileAddNewPostForm'))
 }
 
 export default profileReducer

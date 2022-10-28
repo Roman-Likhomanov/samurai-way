@@ -27,11 +27,11 @@ export type DialogsPageType = {
 
 export type MessageType = {
     message: string
-    id: number
+    id: number|string
 }
 export type DialogsItemType = {
     name: string
-    id: number
+    id: number|string
 }
 
 export type ProfilePageType = {

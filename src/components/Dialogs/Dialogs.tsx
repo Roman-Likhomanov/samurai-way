@@ -15,7 +15,7 @@ type DialogsPropsType = {
 }
 
 type FormDataType = {
-    newMessageBody:string
+    newMessageBody: string
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -34,10 +34,12 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
-                <div>{messagesElements}</div>
+            <div className={s.messagesWrapper}>
+                <div className={s.messages}>
+                    {messagesElements}
+                </div>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
-            <AddMessageFormRedux onSubmit={addNewMessage}/>
         </div>
     )
 }
@@ -46,14 +48,10 @@ let maxLength50 = maxLengthCreator(50)
 
 const AddMessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <div>
-                    <Field component={Textarea} name="newMessageBody" placeholder="Enter your message"
-                           validate={[required, maxLength50]}/>
-                </div>
-                <button>Send</button>
-            </div>
+        <form className={s.newMessage} onSubmit={props.handleSubmit}>
+            <Field component={Textarea} name="newMessageBody"
+                   validate={[required, maxLength50]}/>
+            <button>Send</button>
         </form>
     )
 }
