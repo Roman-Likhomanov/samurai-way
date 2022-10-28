@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Header.module.css';
 import {NavLink} from 'react-router-dom';
+import facebook from '../../assets/images/facebook.png'
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -10,10 +11,10 @@ type HeaderPropsType = {
 
 const Header: React.FC<HeaderPropsType> = (props) => {
     return <header className={s.header}>
-        <img src="https://www.pngmart.com/files/2/Superman-Logo-PNG-Image.png"/>
+        <img src={facebook}/>
         <div className={s.loginBlock}>
             {props.isAuth
-                ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>
+                ? <div><span>{props.login}</span><button onClick={props.logout}>Log out</button></div>
                 : <NavLink to={'./login'}>Login</NavLink>}
         </div>
     </header>

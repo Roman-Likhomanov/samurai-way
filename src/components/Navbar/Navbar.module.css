@@ -1,15 +1,25 @@
 .nav {
     grid-area: n;
-    background-color:#edeef0;
-    padding: 60px;
+    background-color: #edeef0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 0 30px;
+    font-weight: 500;
 }
 
-.item a {
+.item {
     color: black;
     text-decoration: none;
-    font-size: larger;
+    padding: 20px;
+
 }
 
-.item a.active {
-    color:darkblue;
+.item:hover {
+    background-color: #c5d0db;
+    border-radius: 8px;
+}
+
+.item.active {
+    background-color: #c5d0db;
+    border-radius: 8px;
 }
