@@ -1,14 +1,55 @@
+.paginatorContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 .paginator {
-    margin: 10px;
+    padding: 10px;
+    line-height: 16px;
+    font-size: 12px;
+    margin: 0 auto;
+}
+
+.prev {
+    color: #9EAAB4;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color .3s;
+    border: 2px solid #ddd;
+    border-radius: 10px 0 0 10px;
+}
+
+.next {
+    color: #9EAAB4;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color .3s;
+    border: 2px solid #ddd;
+    border-radius: 0 10px 10px 0;
 }
 
 .pageNumber {
-    padding: 2px;
-    border: 1px solid grey;
+    color: #9EAAB4;
+    padding: 8px 16px;
     cursor: pointer;
+    transition: background-color .3s;
+    border: 2px solid #ddd;
 }
 
 .pageNumber.selectedPage {
-    font-weight: bold;
-    border-color: black;
+    background-color: #0CB4F1;
+    color: white;
+    border: 1px solid #0CB4F1;
+}
+
+.pageNumber:hover:not(.pageNumber.selectedPage) {
+    background-color: #ddd;
+}
+
+.next:hover:not(.pageNumber.selectedPage) {
+    background-color: #ddd;
+}
+
+.prev:hover:not(.pageNumber.selectedPage) {
+    background-color: #ddd;
 }

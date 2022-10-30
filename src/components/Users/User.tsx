@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './users.module.css';
-import userPhoto from '../../assets/images/user.png';
+import avatar from '../../assets/images/avatar.png';
 import {NavLink} from 'react-router-dom';
 import {UsersType} from '../../redux/types';
+import s from './users.module.css';
 
 type UserPropsType = {
     user: UsersType
@@ -13,34 +14,27 @@ type UserPropsType = {
 
 const User: React.FC<UserPropsType> = ({user, followingInProgress, follow, unfollow}) => {
     return (
-        <div>
-                <span>
-                    <div>
-                        <NavLink to={'/profile/' + user.id}>
-                    <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto}/>
-                    </NavLink>
-                        </div>
-                    <div>
-                        {user.followed ?
-                            <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-                                unfollow(user.id)
-                            }}>Unfollow</button> :
-                            <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-                                follow(user.id)
-                            }
-                            }>Follow</button>}
-                                </div>
-                                </span>
-            <span>
-                                <span>
-                                <div>{user.name}</div>
-                                <div>{user.status}</div>
-                                </span>
-                                <span>
-                                <div>{'u.location.country'}</div>
-                                <div>{'u.location.city'}</div>
-                                </span>
-                                </span>
+        <div className={s.userBox}>
+            <div>
+                <NavLink to={'/profile/' + user.id}>
+                    <img src={user.photos.small != null ? user.photos.small : avatar} className={styles.userPhoto}/>
+                </NavLink>
+            </div>
+            <div className={s.userDataBox}>
+                <div className={s.name}>{user.name}</div>
+                <div className={s.userData}>{'u.location.country'}</div>
+                <div className={s.userData}>{'u.location.city'}</div>
+            </div>
+            <div>
+                {user.followed ?
+                    <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
+                        unfollow(user.id)
+                    }}>Unfollow</button> :
+                    <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
+                        follow(user.id)
+                    }
+                    }>Follow</button>}
+            </div>
         </div>)
 
 }

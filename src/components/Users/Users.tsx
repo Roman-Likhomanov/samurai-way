@@ -19,8 +19,6 @@ const Users: React.FC<UserPropsType> = ({
                                             users, ...props
                                         }) => {
     return <div>
-        <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
-                   onPageChanged={onPageChanged}/>
         <div>
             {
                 users.map(u => <User key={u.id}
@@ -32,6 +30,8 @@ const Users: React.FC<UserPropsType> = ({
                 )
             }
         </div>
+        <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
+                   onPageChanged={onPageChanged}/>
     </div>
 }
 

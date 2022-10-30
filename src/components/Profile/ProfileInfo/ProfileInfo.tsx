@@ -2,7 +2,7 @@ import React, {ChangeEvent, useRef, useState} from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import {ProfileType} from '../../../redux/types';
-import userPhoto from '../../../assets/images/user.png';
+import avatar from '../../../assets/images/avatar.png';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import photoicon from '../../../assets/images/photoicon.svg'
 import ProfileDataForm, {FormDataType} from './ProfileDataForm';
@@ -66,7 +66,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = ({profile, status, updateStatus, 
                 <div style={background} className={s.backgroundPhoto}></div>
                 <div className={s.descriptionContainer}>
                     <div className={s.profileAvatarBox}>
-                        <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
+                        <img src={profile.photos.large || avatar} className={s.mainPhoto}/>
                         {isOwner && <div className={s.photoButton} onClick={selectFileHandler}>
                             <img src={photoicon} alt="photoicon"/>
                         </div>}

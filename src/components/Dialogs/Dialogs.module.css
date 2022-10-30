@@ -22,7 +22,7 @@
 
 .messagesWrapper {
     box-sizing: border-box;
-    height: 80vh;
+    height: 100%;
     display: flex;
     gap: 50px;
     flex-direction: column;
