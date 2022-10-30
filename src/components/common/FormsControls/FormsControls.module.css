@@ -4,6 +4,11 @@
     resize: none;
 }
 
+.input {
+    border: 1px solid rgb(133, 133, 133);
+    height: 20px;
+}
+
 .formControl.error input,
 .formControl.error textarea {
     border: solid 2px red
@@ -16,6 +21,10 @@
 .formSummaryError {
     color: red;
     padding: 5px
+}
+
+.check {
+    display: flex;
 }
 
 

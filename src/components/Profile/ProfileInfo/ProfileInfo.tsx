@@ -92,7 +92,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = ({profile, status, updateStatus, 
 const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner, goToEditMode}) => {
     return <div className={s.profileDataBox}>
             <div>
-                {profile && profile.fullName}
+                <h2>{profile && profile.fullName}</h2>
             </div>
             <div>
                 <b>Looking for a job</b>: {profile && profile.lookingForAJob ? 'yes' : 'no'}
